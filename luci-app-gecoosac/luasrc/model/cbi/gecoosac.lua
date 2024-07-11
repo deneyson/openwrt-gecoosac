@@ -1,5 +1,17 @@
 
-m = Map("gecoosac", translate("Gecoos AC"), translate("Batch management Gecoos AP,Default password:admin"))
+function program_exists(program)
+	local handle = io.popen('which ' .. program)
+	local result = handle:read('*a')
+	handle:close()
+	return result ~= ''
+end
+
+if program_exists("gecoosac") then
+	m = Map("gecoosac", translate("Gecoos AC"), translate("Batch management Gecoos AP,Default password:admin"))
+else
+	m = Map("gecoosac", translate("Gecoos AC"), translate("Batch management Gecoos AP,Default password:admin") .. "<br>" .. translate("The AC program does not exist, please check."))
+end
+
 
 m:section(SimpleSection).template  = "gecoosac/gecoosac_status"
 

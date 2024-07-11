@@ -16,9 +16,8 @@ end
 
 function act_status()
 	local e = {}
-	local binpath = uci:get("gecoosac", "config", "program_path") or "/usr/bin/gecoosac"
 	e = {
-		running = luci.sys.call("pgrep " .. binpath .. " >/dev/null") == 0,
+		running = luci.sys.call("pgrep '/usr/bin/gecoosac' >/dev/null") == 0,
 		port = uci:get("gecoosac", "config", "port")
 	}
 	luci.http.prepare_content("application/json")
